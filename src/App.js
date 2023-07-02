@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+// components
+import Header from "./components/Header"
+import FeedbackList from "./components/FeedbackList"
+import FeedbackStats from "./components/FeedbackStats"
+import FeedbackData from "./data/FeedbackData"
+import Card from "./components/shared/Card"
+
+import { useState } from "react"
 
 function App() {
+  const [data, setData] = useState(FeedbackData)
+
+  const deleteFeedBack = (id) => {
+    setData(data.filter((item) => item.id !== id))
+  }
+
+  const addFeedBack = (str) => {
+    let newFeedback = data[data.length - 1]
+    setData([
+      ...data,
+      {
+        ...newFeedback,
+        ["id"]: newFeedback.id + 1,
+        ["rate"]: newFeedback.rate - 1,
+      },
+    ])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Header />
+      <div className="container">
+        <button onClick={addFeedBack}>add</button>
+        <FeedbackStats data={data} />
+        {data && <FeedbackList data={data} handleDelete={deleteFeedBack} />}
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
