@@ -2,6 +2,7 @@
 import Header from "./components/Header"
 import FeedbackList from "./components/FeedbackList"
 import FeedbackStats from "./components/FeedbackStats"
+import FeedbackForm from "./components/FeedbackForm"
 import FeedbackData from "./data/FeedbackData"
 import Card from "./components/shared/Card"
 
@@ -14,23 +15,11 @@ function App() {
     setData(data.filter((item) => item.id !== id))
   }
 
-  const addFeedBack = (str) => {
-    let newFeedback = data[data.length - 1]
-    setData([
-      ...data,
-      {
-        ...newFeedback,
-        ["id"]: newFeedback.id + 1,
-        ["rate"]: newFeedback.rate - 1,
-      },
-    ])
-  }
-
   return (
     <>
       <Header />
       <div className="container">
-        <button onClick={addFeedBack}>add</button>
+        <FeedbackForm />
         <FeedbackStats data={data} />
         {data && <FeedbackList data={data} handleDelete={deleteFeedBack} />}
       </div>
