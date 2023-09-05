@@ -1,11 +1,33 @@
+import { AnimatePresence, motion } from "framer-motion"
 import FeedbackItem from "./FeedbackItem"
 
-function FeedbackList({ data, handleDelete }) {
+import { useContext } from "react"
+import { FeedbackContext } from "../context/FeedbackContext"
+
+function FeedbackList({ handleDelete }) {
+  const { feedback } = useContext(FeedbackContext)
+
+  if (!feedback || feedback.length === 0) {
+    return <p>Belum ada komentar</p>
+  }
   return (
     <div className="feedback-list">
-      {data?.map((item) => (
-        <FeedbackItem key={item.id} data={item} handleDelete={handleDelete} />
-      ))}
+      <AnimatePresence>
+        {feedback?.map((item) => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 1 }}
+          >
+            <FeedbackItem
+              key={item.id}
+              data={item}
+              handleDelete={handleDelete}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   )
 }
