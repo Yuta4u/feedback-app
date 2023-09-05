@@ -190,7 +190,8 @@ input:focus {
 .about-link {
   width: 50px;
   height: 50px;
-  bottom: -10;
+  /* bottom: -1; */
+  bottom: 0;
   right: 0;
   position: absolute;
 }
