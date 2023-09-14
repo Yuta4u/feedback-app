@@ -3,7 +3,7 @@ import FeedbackItem from "./FeedbackItem"
 import { useQuery } from "react-query"
 import { getAllFeedback } from "../api"
 
-function FeedbackList({ handleDelete }) {
+function FeedbackList() {
   const { data: feedback, isLoading } = useQuery({
     queryFn: getAllFeedback,
     queryKey: ["feedback"],
