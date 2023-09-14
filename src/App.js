@@ -14,30 +14,28 @@ const queryClient = new QueryClient()
 
 function App() {
   return (
-    <FeedbackProvider>
-      <QueryClientProvider client={queryClient}>
-        <Router>
-          <Header />
-          <div className="container">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <FeedbackForm />
-                    <FeedbackStats />
-                    <FeedbackList />
-                  </>
-                }
-              />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/post/*" element={<Post />} />
-            </Routes>
-            <AboutIconLink />
-          </div>
-        </Router>
-      </QueryClientProvider>
-    </FeedbackProvider>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Header />
+        <div className="container">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <FeedbackForm />
+                  <FeedbackStats />
+                  <FeedbackList />
+                </>
+              }
+            />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/post/*" element={<Post />} />
+          </Routes>
+          <AboutIconLink />
+        </div>
+      </Router>
+    </QueryClientProvider>
   )
 }
 
