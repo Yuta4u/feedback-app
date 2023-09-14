@@ -18,10 +18,3 @@ export async function createFeedback(newPost) {
   )
   return response
 }
-
-export async function deleteFeedback(id) {
-  const response = await axios.delete(
-    `http://localhost:3000/feedback/v1/deleteById/${id}`
-  )
-  return response
-}
