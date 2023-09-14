@@ -10,32 +10,36 @@ import AboutPage from "./pages/AboutPage"
 import Post from "./components/Post"
 
 import { FeedbackProvider } from "./context/FeedbackContext"
+import { QueryClientProvider, QueryClient } from "react-query"
+
+// Query Client
+const queryClient = new QueryClient()
 
 function App() {
-  const [data, setData] = useState(FeedbackData)
-
   return (
     <FeedbackProvider>
-      <Router>
-        <Header />
-        <div className="container">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <FeedbackForm />
-                  <FeedbackStats />
-                  <FeedbackList />
-                </>
-              }
-            />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/post/*" element={<Post />} />
-          </Routes>
-          <AboutIconLink />
-        </div>
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <Header />
+          <div className="container">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <FeedbackForm />
+                    <FeedbackStats />
+                    <FeedbackList />
+                  </>
+                }
+              />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/post/*" element={<Post />} />
+            </Routes>
+            <AboutIconLink />
+          </div>
+        </Router>
+      </QueryClientProvider>
     </FeedbackProvider>
   )
 }
