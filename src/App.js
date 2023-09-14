@@ -7,7 +7,6 @@ import AboutIconLink from "./components/AboutIconLink"
 import AboutPage from "./pages/AboutPage"
 import Post from "./components/Post"
 
-import { FeedbackProvider } from "./context/FeedbackContext"
 import { QueryClientProvider, QueryClient } from "react-query"
 
 // Query Client
