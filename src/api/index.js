@@ -1,8 +1,13 @@
 import axios from "axios"
 
 export async function getAllFeedback() {
+  const headers = {
+    "Content-Type": "application/json",
+  }
+
   const response = await axios.get(
-    `https://feedback-app-be-production.up.railway.app/getall`
+    `https://feedback-app-be-production.up.railway.app/getall`,
+    headers
   )
   return response
 }
